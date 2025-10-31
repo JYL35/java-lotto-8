@@ -16,7 +16,8 @@ public class AmountTest {
     void test_구매_금액_공백_또는_널값_예외발생(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("비어있을 수 없습니다");
     }
 
     @ParameterizedTest
@@ -25,6 +26,7 @@ public class AmountTest {
     void test_구매_금액_정수_아니면_예외발생(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]");
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("정수여야 합니다");
     }
 }
