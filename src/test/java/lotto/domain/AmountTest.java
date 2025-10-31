@@ -39,4 +39,14 @@ public class AmountTest {
                 .hasMessageStartingWith("[ERROR]")
                 .hasMessageContaining("1천원 이상, 10만원 미만이어야 합니다");
     }
+
+    @ParameterizedTest
+    @DisplayName("구매 금액이 1천원 단위가 아니면 예외 발생")
+    @ValueSource(strings = {"1001", "12345", "99999", "50001"})
+    void test_구매_금액_1천원_단위_예외발생(String amount) {
+        assertThatThrownBy(() -> new Amount(amount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("1천원 단위이어야 합니다");
+    }
 }
