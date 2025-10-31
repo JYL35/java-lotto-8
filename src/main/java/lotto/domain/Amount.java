@@ -2,7 +2,6 @@ package lotto.domain;
 
 public class Amount {
     private static final int LOTTO_PRICE = 1000;
-    private static final int MIN_PURCHASE_AMOUNT = 1000;
     private static final int MAX_PURCHASE_AMOUNT = 100000;
 
     public Amount(String purchaseAmount) {
@@ -27,14 +26,20 @@ public class Amount {
     }
 
     private void validateRange(int purchaseAmount) {
-        if (purchaseAmount < MIN_PURCHASE_AMOUNT || purchaseAmount > MAX_PURCHASE_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1천원 이상, 10만원 미만이어야 합니다. 다시 입력해주세요.");
+        if (purchaseAmount < LOTTO_PRICE || purchaseAmount > MAX_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException(String.format(
+                    "[ERROR] 구매 금액은 %,d원 이상, %,d원 미만이어야 합니다. 다시 입력해주세요.",
+                    LOTTO_PRICE, MAX_PURCHASE_AMOUNT
+            ));
         }
     }
 
     private void validateUnit(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1천원 단위이어야 합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(String.format(
+                    "[ERROR] 구매 금액은 %,d원 단위어야 합니다. 다시 입력해주세요.",
+                    LOTTO_PRICE
+            ));
         }
     }
 }

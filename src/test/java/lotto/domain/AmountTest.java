@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AmountTest {
+    private static final int LOTTO_PRICE = 1000;
+    private static final int MAX_PURCHASE_AMOUNT = 100000;
 
     @ParameterizedTest
     @DisplayName("구매 금액이 비어있으면 예외 발생")
@@ -37,7 +39,10 @@ public class AmountTest {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
-                .hasMessageContaining("1천원 이상, 10만원 미만이어야 합니다");
+                .hasMessageContaining(String.format(
+                        "%,d원 이상, %,d원 미만이어야 합니다",
+                        LOTTO_PRICE, MAX_PURCHASE_AMOUNT
+                ));
     }
 
     @ParameterizedTest
@@ -47,6 +52,6 @@ public class AmountTest {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
-                .hasMessageContaining("1천원 단위이어야 합니다");
+                .hasMessageContaining("%,d원 단위어야 합니다", LOTTO_PRICE);
     }
 }
