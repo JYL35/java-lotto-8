@@ -3,9 +3,11 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class AmountTest {
@@ -53,5 +55,16 @@ public class AmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
                 .hasMessageContaining("%,d원 단위어야 합니다", LOTTO_PRICE);
+    }
+
+    @ParameterizedTest
+    @DisplayName("구매 금액에 따라 알맞은 로또 개수를 반환한다.")
+    @CsvSource(value = {"1000:1", "99000:99", "23000:23"}, delimiter = ':')
+    void Amount_GetLottoPurchaseCount_ReturnsCorrectCount(String input, int expected) {
+        Amount amount = new Amount(input);
+
+        int lottoPurchaseCount = amount.getLottoPurchaseCount();
+
+        assertThat(lottoPurchaseCount).isEqualTo(expected);
     }
 }
