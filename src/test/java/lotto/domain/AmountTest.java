@@ -13,9 +13,9 @@ public class AmountTest {
     private static final int MAX_PURCHASE_AMOUNT = 100000;
 
     @ParameterizedTest
-    @DisplayName("구매 금액이 비어있으면 예외 발생")
+    @DisplayName("구매 금액이 공백이거나 널값이면 예외가 발생한다.")
     @NullAndEmptySource
-    void test_구매_금액_공백_또는_널값_예외발생(String amount) {
+    void Amount_IsBlank_ThrowException(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
@@ -23,9 +23,9 @@ public class AmountTest {
     }
 
     @ParameterizedTest
-    @DisplayName("구매 금액이 정수가 아니면 예외 발생")
+    @DisplayName("구매 금액이 정수가 아니면 예외가 발생한다.")
     @ValueSource(strings = {"a", "abc", "1000.5", " 9"})
-    void test_구매_금액_정수_아니면_예외발생(String amount) {
+    void Amount_IsNotInteger_ThrowException(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
@@ -33,9 +33,9 @@ public class AmountTest {
     }
 
     @ParameterizedTest
-    @DisplayName("구매 금액이 1천원 미만, 10만원 초과면 예외 발생")
+    @DisplayName("구매 금액이 1천원 미만, 10만원 초과면 예외가 발생한다.")
     @ValueSource(strings = {"999", "0", "-1000", "100001"})
-    void test_구매_금액_범위_예외발생(String amount) {
+    void Amount_IsOutOfRange_ThrowException(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
@@ -46,9 +46,9 @@ public class AmountTest {
     }
 
     @ParameterizedTest
-    @DisplayName("구매 금액이 1천원 단위가 아니면 예외 발생")
+    @DisplayName("구매 금액이 1천원 단위가 아니면 예외가 발생한다.")
     @ValueSource(strings = {"1001", "12345", "99999", "50001"})
-    void test_구매_금액_1천원_단위_예외발생(String amount) {
+    void Amount_IsNotInUnit_ThrowException(String amount) {
         assertThatThrownBy(() -> new Amount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
