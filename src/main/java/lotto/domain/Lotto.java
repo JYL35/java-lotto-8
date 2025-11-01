@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<LottoNumber> numbers) {
         validateCount(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -20,5 +21,13 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(List<LottoNumber> numbers) {
+        List<LottoNumber> uniqueNumbers = numbers.stream()
+                .distinct()
+                .toList();
+
+        if (numbers.size() != uniqueNumbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복됩니다.");
+        }
+    }
 }
