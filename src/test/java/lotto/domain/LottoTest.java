@@ -26,12 +26,18 @@ class LottoTest {
                 .hasMessageContaining("6개여야 합니다");
     }
 
+    @ParameterizedTest
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,2,2,3,4,5"})
+    void Lotto_HasDuplicateNumbers_ThrowException(String lotto) {
+        List<LottoNumber> numbers = Arrays.stream(lotto.split(","))
+                .map(Integer::parseInt)
+                .map(LottoNumber::new)
+                .toList();
 
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("중복");
+    }
 }
