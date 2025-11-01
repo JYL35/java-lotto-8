@@ -15,9 +15,10 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
     @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3,4,5"})
     void Lotto_sizeIsNot6_ThrowException(String lotto) {
-        List<Integer> numbers = Arrays.stream(lotto.split(","))
-                                    .map(Integer::parseInt)
-                                    .toList();
+        List<LottoNumber> numbers = Arrays.stream(lotto.split(","))
+                .map(Integer::parseInt)
+                .map(LottoNumber::new)
+                .toList();
 
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
