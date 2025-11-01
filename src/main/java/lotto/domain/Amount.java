@@ -4,11 +4,15 @@ public class Amount {
     private static final int LOTTO_PRICE = 1000;
     private static final int MAX_PURCHASE_AMOUNT = 100000;
 
+    private final int purchaseAmount;
+
     public Amount(String purchaseAmount) {
         validateEmpty(purchaseAmount);
         int parsedAmount = validateInteger(purchaseAmount);
         validateRange(parsedAmount);
         validateUnit(parsedAmount);
+
+        this.purchaseAmount = parsedAmount;
     }
 
     private void validateEmpty(String purchaseAmount) {
@@ -41,5 +45,9 @@ public class Amount {
                     LOTTO_PRICE
             ));
         }
+    }
+
+    public int getLottoPurchaseCount() {
+        return purchaseAmount / LOTTO_PRICE;
     }
 }
