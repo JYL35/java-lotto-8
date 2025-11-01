@@ -44,8 +44,8 @@ class LottoTest {
 
     @ParameterizedTest
     @DisplayName("로또 번호는 오름차순으로 정렬된다.")
-    @CsvSource(value = {"1,42,30,45,21,17:1,17,21,30,42,45",
-            "45,40,35,30,25,20:20,25,30,35,40,45"},
+    @CsvSource(value = {"1,42,30,45,21,17:[1, 17, 21, 30, 42, 45]",
+            "45,40,35,30,25,20:[20, 25, 30, 35, 40, 45]"},
             delimiter = ':')
     void Lotto_ToString_ReturnsSortedString(String input, String expected) {
         List<LottoNumber> numbers = Arrays.stream(input.split(","))

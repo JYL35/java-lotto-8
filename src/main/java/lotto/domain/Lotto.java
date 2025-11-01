@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,7 +13,12 @@ public class Lotto {
     public Lotto(List<LottoNumber> numbers) {
         validateCount(numbers);
         validateDuplicate(numbers);
-        this.numbers = numbers;
+
+        List<LottoNumber> defensiveCopyNumbers = new ArrayList<>(numbers);
+
+        Collections.sort(defensiveCopyNumbers);
+
+        this.numbers = defensiveCopyNumbers;
     }
 
     private void validateCount(List<LottoNumber> numbers) {
@@ -29,5 +37,10 @@ public class Lotto {
         if (numbers.size() != uniqueNumbers.size()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호가 중복됩니다.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
