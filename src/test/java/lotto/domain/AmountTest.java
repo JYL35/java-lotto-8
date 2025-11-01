@@ -40,7 +40,7 @@ public class AmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
                 .hasMessageContaining(String.format(
-                        "%,d원 이상, %,d원 미만이어야 합니다",
+                        "%,d원 이상, %,d원 이하여야 합니다",
                         LOTTO_PRICE, MAX_PURCHASE_AMOUNT
                 ));
     }

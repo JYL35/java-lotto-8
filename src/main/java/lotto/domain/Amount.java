@@ -28,7 +28,7 @@ public class Amount {
     private void validateRange(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE || purchaseAmount > MAX_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(String.format(
-                    "[ERROR] 구매 금액은 %,d원 이상, %,d원 미만이어야 합니다. 다시 입력해주세요.",
+                    "[ERROR] 구매 금액은 %,d원 이상, %,d원 이하여야 합니다. 다시 입력해주세요.",
                     LOTTO_PRICE, MAX_PURCHASE_AMOUNT
             ));
         }
