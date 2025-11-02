@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputParserTest {
 
-    private final InputParser inputParser;
+    private InputParser inputParser;
 
     @BeforeEach
     void CreateInputParser() {
