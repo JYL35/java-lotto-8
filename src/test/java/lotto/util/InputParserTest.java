@@ -54,6 +54,16 @@ public class InputParserTest {
     }
 
     @ParameterizedTest
+    @DisplayName("당첨 번호가 공백이거나 널값이면 예외가 발생한다.")
+    @NullAndEmptySource
+    void parseWinningNumbers_IsBlank_ThrowException(String input) {
+        assertThatThrownBy(() -> inputParser.parseWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("당첨 번호는 비어있을 수 없습니다");
+    }
+
+    @ParameterizedTest
     @DisplayName("당첨 번호 문자열 맨 뒤에 쉼표가 있을 경우 예외가 발생한다.")
     @ValueSource(strings = {"45,40,35,30,25,20,", "1,2,3,4,5,6,"})
     void parseWinningNumbers_SeparatorAtTheEnd_ThrowException(String input) {
