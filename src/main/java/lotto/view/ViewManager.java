@@ -75,7 +75,7 @@ public class ViewManager {
     }
 
     public void printStatistics(GameResult gameResult, double profitRate) {
-        outputView.printStatisticsHeader();;
+        outputView.printStatisticsHeader();
         outputView.printStatistics(gameResult);
         outputView.printProfitRate(profitRate);
     }
