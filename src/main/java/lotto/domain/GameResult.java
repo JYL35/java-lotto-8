@@ -10,7 +10,18 @@ public class GameResult {
         this.statistics = new EnumMap<>(statistics);
     }
 
+    public int getTotalPrize() {
+        int totalPrize = 0;
+
+        for (Rank rank : Rank.values()) {
+            int rankPrize = rank.getPrize() * getCount(rank);
+            totalPrize += rankPrize;
+        }
+
+        return totalPrize;
+    }
+
     public int getCount(Rank rank) {
-        return statistics.get(rank);
+        return statistics.getOrDefault(rank, 0);
     }
 }
