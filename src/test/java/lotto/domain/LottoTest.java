@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -71,5 +72,22 @@ class LottoTest {
         LottoNumber findNumber = new LottoNumber(input);
 
         assertThat(lotto.contains(findNumber)).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("로또가 다른 로또와 몇 개 일치하는지 확인한다.")
+    void Lotto_MatchCountOtherLottoNumber_ReturnsCorrectCount() {
+        Lotto userLotto = new Lotto(List.of(
+                new LottoNumber(1), new LottoNumber(2), new LottoNumber(3),
+                new LottoNumber(4), new LottoNumber(5), new LottoNumber(6)
+        ));
+        Lotto winningLotto = new Lotto(List.of(
+                new LottoNumber(1), new LottoNumber(2), new LottoNumber(3),
+                new LottoNumber(6), new LottoNumber(7), new LottoNumber(8)
+        ));
+
+        int matchCount = userLotto.matchCountOtherLottoNumber(winningLotto);
+
+        assertThat(matchCount).isEqualTo(4);
     }
 }
