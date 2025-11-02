@@ -47,4 +47,19 @@ public class AmountTest {
 
         assertThat(lottoPurchaseCount).isEqualTo(expected);
     }
+
+    @ParameterizedTest
+    @DisplayName("총 당첨금을 기준으로 수익률을 계산한다")
+    @CsvSource({
+            "0,0,0.0",
+            "8000,5000,62.5",
+            "5000:2000000000:400000.0"
+    })
+    void Amount_GetProfitRate_ReturnsCorrectRate(int money, int totalPrize, double expected) {
+        Amount amount = new Amount(money);
+
+        double profitRate = amount.getProfitRate(totalPrize);
+
+        assertThat(profitRate).isEqualTo(expected);
+    }
 }
