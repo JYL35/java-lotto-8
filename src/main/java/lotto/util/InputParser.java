@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputParser {
+    private static final String SEPARATOR = ",";
 
     public int parseAmount(String inputAmount) {
         validateEmpty(inputAmount, ErrorMessage.AMOUNT_BLANK);
@@ -14,7 +15,7 @@ public class InputParser {
         validateEmpty(inputWinningNumbers, ErrorMessage.WINNING_BLANK);
         validateSeparator(inputWinningNumbers, ErrorMessage.WINNING_NUMBER_ENDS_WITH_SEPARATOR);
 
-        return Arrays.stream(inputWinningNumbers.split(","))
+        return Arrays.stream(inputWinningNumbers.split(SEPARATOR))
                 .map(numberStr -> validateInteger(numberStr, ErrorMessage.WINNING_NOT_INTEGER))
                 .toList();
     }
@@ -25,7 +26,7 @@ public class InputParser {
     }
 
     private void validateSeparator(String input, ErrorMessage error) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(SEPARATOR)) {
             throw new IllegalArgumentException(error.getMessage());
         }
     }

@@ -13,7 +13,7 @@ public class OutputView {
     private static final String PRINT_PROFIT_RATE = "총 수익률은 %,.1f%%입니다.";
 
     public void printError(String errorMessage) {
-        System.out.println(errorMessage + ErrorMessage.TRY_AGAIN);
+        System.out.println(errorMessage + ErrorMessage.TRY_AGAIN.getMessage());
     }
 
     public void printPurchaseCount(int count) {

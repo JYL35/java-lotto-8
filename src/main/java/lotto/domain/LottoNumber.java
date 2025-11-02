@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.util.ErrorMessage;
 
 public class LottoNumber implements Comparable<LottoNumber> {
     private static final int MIN_NUMBER = 1;
@@ -15,16 +16,18 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private void validateRange(int lottoNum) {
         if (lottoNum < MIN_NUMBER || lottoNum > MAX_NUMBER) {
-            throw new IllegalArgumentException(String.format(
-                    "[ERROR] 번호는 %,d 이상, %,d 이하여야 됩니다. 다시 입력해주세요.",
-                    MIN_NUMBER, MAX_NUMBER
+            throw new IllegalArgumentException(String.format(ErrorMessage
+                    .LOTTO_NUMBER_OUT_OF_RANGE
+                    .getMessage(), MIN_NUMBER, MAX_NUMBER
             ));
         }
     }
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof LottoNumber that)) return false;
+        if (!(o instanceof LottoNumber that)) {
+            return false;
+        }
         return lottoNum == that.lottoNum;
     }
 
