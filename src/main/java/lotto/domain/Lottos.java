@@ -12,10 +12,6 @@ public class Lottos {
         this.lottos = new ArrayList<>(lottos);
     }
 
-    public int getLottoCount() {
-        return lottos.size();
-    }
-
     public GameResult calculateWinningStatistics(WinningLotto winningLotto) {
         Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
@@ -29,5 +25,15 @@ public class Lottos {
         }
 
         return new GameResult(statistics);
+    }
+
+    public int getLottoCount() {
+        return lottos.size();
+    }
+
+    public List<String> getFormattedLottos() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .toList();
     }
 }
