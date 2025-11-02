@@ -3,21 +3,21 @@ package lotto.util;
 public class InputParser {
 
     public int parseAmount(String inputAmount) {
-        validateEmpty(inputAmount);
-        return validateInteger(inputAmount);
+        validateEmpty(inputAmount, ErrorMessage.AMOUNT_BLANK);
+        return validateInteger(inputAmount, ErrorMessage.AMOUNT_NOT_INTEGER);
     }
 
-    private void validateEmpty(String inputAmount) {
-        if (inputAmount == null || inputAmount.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 비어있을 수 없습니다. 다시 입력해주세요.");
+    private void validateEmpty(String input, ErrorMessage error) {
+        if (input == null || input.isBlank()) {
+            throw new IllegalArgumentException(error.getMessage());
         }
     }
 
-    private int validateInteger(String inputAmount) {
+    private int validateInteger(String input, ErrorMessage error) {
         try {
-            return Integer.parseInt(inputAmount);
+            return Integer.parseInt(input.strip());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 정수여야 합니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(error.getMessage());
         }
     }
 }
