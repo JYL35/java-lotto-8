@@ -2,8 +2,10 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Amount;
+import lotto.domain.GameResult;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
 import lotto.util.InputParser;
 
@@ -65,5 +67,16 @@ public class ViewManager {
         String inputBonusNumber = inputView.readBonusNumber();
         int bonusNumber = inputParser.parseBonusNumber(inputBonusNumber);
         return new WinningLotto(winningLotto, new LottoNumber(bonusNumber));
+    }
+
+    public void printPurchaseResult(Amount amount, Lottos userLottos) {
+        outputView.printPurchaseCount(amount.getLottoPurchaseCount());
+        outputView.printPurchaseLottos(userLottos.getFormattedLottos());
+    }
+
+    public void printStatistics(GameResult gameResult, double profitRate) {
+        outputView.printStatisticsHeader();;
+        outputView.printStatistics(gameResult);
+        outputView.printProfitRate(profitRate);
     }
 }

@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println(String.format(PRINT_PURCHASE_COUNT, count));
     }
 
-    public void PrintPurchaseLottos(List<String> formattedLottos) {
+    public void printPurchaseLottos(List<String> formattedLottos) {
         formattedLottos.forEach(System.out::println);
     }
 
