@@ -17,8 +17,8 @@ public class GameResultTest {
         statistics.put(Rank.FIFTH, 2);
         GameResult result = new GameResult(statistics);
 
-        int totalPrize = result.getTotalPrize();
+        long totalPrize = result.getTotalPrize();
 
-        assertThat(totalPrize).isEqualTo(1510000);
+        assertThat(totalPrize).isEqualTo(1_510_000L);
     }
 }
