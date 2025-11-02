@@ -20,11 +20,14 @@ public class LottoController {
     public void startGame() {
         Amount amount = viewManager.getValidAmount();
         Lottos userLottos = lottoService.purchaseLottos(amount);
+        viewManager.printPurchaseResult(amount, userLottos);
 
         Lotto winningLotto = viewManager.getValidWinningLotto();
         WinningLotto winningLottoSet = viewManager.getValidBonusNumber(winningLotto);
 
         GameResult gameResult = userLottos.calculateWinningStatistics(winningLottoSet);
         double userProfitRate = amount.getProfitRate(gameResult.getTotalPrize());
+
+        viewManager.printStatistics(gameResult, userProfitRate);
     }
 }
