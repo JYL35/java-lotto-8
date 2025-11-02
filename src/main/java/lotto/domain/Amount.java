@@ -34,4 +34,8 @@ public class Amount {
     public int getLottoPurchaseCount() {
         return purchaseAmount / LOTTO_PRICE;
     }
+
+    public double getProfitRate(long totalPrize) {
+        return (double) totalPrize / purchaseAmount * 100.0;
+    }
 }
