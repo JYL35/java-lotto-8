@@ -16,7 +16,7 @@ public class Lottos {
         return lottos.size();
     }
 
-    public Map<Rank, Integer> calculateWinningStatistics(WinningLotto winningLotto) {
+    public GameResult calculateWinningStatistics(WinningLotto winningLotto) {
         Map<Rank, Integer> statistics = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
             statistics.put(rank, 0);
@@ -28,6 +28,6 @@ public class Lottos {
             statistics.put(rank, statistics.get(rank) + 1);
         }
 
-        return statistics;
+        return new GameResult(statistics);
     }
 }

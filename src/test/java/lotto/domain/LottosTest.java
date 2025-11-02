@@ -39,13 +39,13 @@ public class LottosTest {
         Lottos myLotto = new Lottos(List.of(
                 userLotto1, userLotto2, userLotto3, userLotto4));
 
-        Map<Rank, Integer> statistics = myLotto.calculateWinningStatistics(winningLotto);
+        GameResult gameResult = myLotto.calculateWinningStatistics(winningLotto);
 
-        assertThat(statistics.get(Rank.FIRST)).isEqualTo(0);
-        assertThat(statistics.get(Rank.SECOND)).isEqualTo(1);
-        assertThat(statistics.get(Rank.THIRD)).isEqualTo(0);
-        assertThat(statistics.get(Rank.FOURTH)).isEqualTo(1);
-        assertThat(statistics.get(Rank.FIFTH)).isEqualTo(0);
-        assertThat(statistics.get(Rank.MISS)).isEqualTo(2);
+        assertThat(gameResult.getCount(Rank.FIRST)).isEqualTo(0);
+        assertThat(gameResult.getCount(Rank.SECOND)).isEqualTo(1);
+        assertThat(gameResult.getCount(Rank.THIRD)).isEqualTo(0);
+        assertThat(gameResult.getCount(Rank.FOURTH)).isEqualTo(1);
+        assertThat(gameResult.getCount(Rank.FIFTH)).isEqualTo(0);
+        assertThat(gameResult.getCount(Rank.MISS)).isEqualTo(2);
     }
 }
