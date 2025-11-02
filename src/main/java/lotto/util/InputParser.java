@@ -11,6 +11,7 @@ public class InputParser {
     }
 
     public List<Integer> parseWinningNumbers(String inputWinningNumbers) {
+        validateEmpty(inputWinningNumbers, ErrorMessage.WINNING_BLANK);
         validateSeparator(inputWinningNumbers, ErrorMessage.WINNING_NUMBER_ENDS_WITH_SEPARATOR);
 
         return Arrays.stream(inputWinningNumbers.split(","))
