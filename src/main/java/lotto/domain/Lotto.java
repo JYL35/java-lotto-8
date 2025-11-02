@@ -39,6 +39,11 @@ public class Lotto {
         }
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return this.numbers
+                .contains(lottoNumber);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
