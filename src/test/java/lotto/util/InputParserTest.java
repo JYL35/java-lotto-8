@@ -2,7 +2,6 @@ package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.Amount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -21,7 +20,7 @@ public class InputParserTest {
     @ParameterizedTest
     @DisplayName("구매 금액이 공백이거나 널값이면 예외가 발생한다.")
     @NullAndEmptySource
-    void Amount_IsBlank_ThrowException(String input) {
+    void parseAmount_IsBlank_ThrowException(String input) {
         assertThatThrownBy(() -> inputParser.parseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
@@ -31,7 +30,7 @@ public class InputParserTest {
     @ParameterizedTest
     @DisplayName("구매 금액이 정수가 아니면 예외가 발생한다.")
     @ValueSource(strings = {"a", "abc", "1000.5", " 9"})
-    void Amount_IsNotInteger_ThrowException(String input) {
+    void parseAmount_IsNotInteger_ThrowException(String input) {
         assertThatThrownBy(() -> inputParser.parseAmount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
