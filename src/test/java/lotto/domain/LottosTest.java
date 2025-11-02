@@ -39,7 +39,7 @@ public class LottosTest {
         Lottos myLotto = new Lottos(List.of(
                 userLotto1, userLotto2, userLotto3, userLotto4));
 
-        Map<Rank, Integer> statistics = myLottos.calculateWinningStatistics(winningLotto);
+        Map<Rank, Integer> statistics = myLotto.calculateWinningStatistics(winningLotto);
 
         assertThat(statistics.get(Rank.FIRST)).isEqualTo(0);
         assertThat(statistics.get(Rank.SECOND)).isEqualTo(1);
