@@ -15,6 +15,14 @@ public class Amount {
         this.purchaseAmount = purchaseAmount;
     }
 
+    public int getLottoPurchaseCount() {
+        return purchaseAmount / LOTTO_PRICE;
+    }
+
+    public double getProfitRate(long totalPrize) {
+        return (double) totalPrize / purchaseAmount * 100.0;
+    }
+
     private void validateRange(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE || purchaseAmount > MAX_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(String.format(
@@ -31,13 +39,5 @@ public class Amount {
                     LOTTO_PRICE
             ));
         }
-    }
-
-    public int getLottoPurchaseCount() {
-        return purchaseAmount / LOTTO_PRICE;
-    }
-
-    public double getProfitRate(long totalPrize) {
-        return (double) totalPrize / purchaseAmount * 100.0;
     }
 }

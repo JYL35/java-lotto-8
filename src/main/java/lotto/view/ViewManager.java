@@ -31,12 +31,6 @@ public class ViewManager {
         }
     }
 
-    private Amount processAmountInput() {
-        String inputAmount = inputView.readPurchaseAmount();
-        int parsedAmount = inputParser.parseAmount(inputAmount);
-        return new Amount(parsedAmount);
-    }
-
     public Lotto getValidWinningLotto() {
         try {
             return processWinningLottoInput();
@@ -44,14 +38,6 @@ public class ViewManager {
             outputView.printError(e.getMessage());
             return getValidWinningLotto();
         }
-    }
-
-    private Lotto processWinningLottoInput() {
-        String inputWinningNumbers = inputView.readWinningNumbers();
-        List<Integer> parsedWinningNumbers = inputParser.parseWinningNumbers(inputWinningNumbers);
-        return new Lotto(parsedWinningNumbers.stream()
-                .map(LottoNumber::new)
-                .toList());
     }
 
     public WinningLotto getValidBonusNumber(Lotto winningLotto) {
@@ -63,12 +49,6 @@ public class ViewManager {
         }
     }
 
-    private WinningLotto processBonusNumberInput(Lotto winningLotto) {
-        String inputBonusNumber = inputView.readBonusNumber();
-        int bonusNumber = inputParser.parseBonusNumber(inputBonusNumber);
-        return new WinningLotto(winningLotto, new LottoNumber(bonusNumber));
-    }
-
     public void printPurchaseResult(Amount amount, Lottos userLottos) {
         outputView.printPurchaseCount(amount.getLottoPurchaseCount());
         outputView.printPurchaseLottos(userLottos.getFormattedLottos());
@@ -78,5 +58,25 @@ public class ViewManager {
         outputView.printStatisticsHeader();
         outputView.printStatistics(gameResult);
         outputView.printProfitRate(profitRate);
+    }
+
+    private Amount processAmountInput() {
+        String inputAmount = inputView.readPurchaseAmount();
+        int parsedAmount = inputParser.parseAmount(inputAmount);
+        return new Amount(parsedAmount);
+    }
+
+    private Lotto processWinningLottoInput() {
+        String inputWinningNumbers = inputView.readWinningNumbers();
+        List<Integer> parsedWinningNumbers = inputParser.parseWinningNumbers(inputWinningNumbers);
+        return new Lotto(parsedWinningNumbers.stream()
+                .map(LottoNumber::new)
+                .toList());
+    }
+
+    private WinningLotto processBonusNumberInput(Lotto winningLotto) {
+        String inputBonusNumber = inputView.readBonusNumber();
+        int bonusNumber = inputParser.parseBonusNumber(inputBonusNumber);
+        return new WinningLotto(winningLotto, new LottoNumber(bonusNumber));
     }
 }

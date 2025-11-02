@@ -21,6 +21,17 @@ public class Lotto {
         this.numbers = defensiveCopyNumbers;
     }
 
+    public boolean contains(LottoNumber lottoNumber) {
+        return numbers
+                .contains(lottoNumber);
+    }
+
+    public int matchCountOtherLottoNumber(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::contains)
+                .count();
+    }
+
     private void validateCount(List<LottoNumber> numbers) {
         if (numbers.size() != COUNT_LOTTO_NUMBERS) {
             throw new IllegalArgumentException(String.format(ErrorMessage
@@ -38,17 +49,6 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE
                     .getMessage());
         }
-    }
-
-    public boolean contains(LottoNumber lottoNumber) {
-        return numbers
-                .contains(lottoNumber);
-    }
-
-    public int matchCountOtherLottoNumber(Lotto otherLotto) {
-        return (int) numbers.stream()
-                .filter(otherLotto::contains)
-                .count();
     }
 
     @Override
