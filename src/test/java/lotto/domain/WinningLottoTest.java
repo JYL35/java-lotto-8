@@ -78,7 +78,7 @@ public class WinningLottoTest {
                 .toList();
         Lotto userLotto = new Lotto(lottoNums);
 
-        Rank rank = winningLotto.matchLank(userLotto);
+        Rank rank = winningLotto.matchRank(userLotto);
 
         assertThat(rank).isEqualTo(expectedRank);
     }

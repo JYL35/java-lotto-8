@@ -18,4 +18,11 @@ public class WinningLotto {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATE.getMessage());
         }
     }
+
+    public Rank matchRank(Lotto userLotto) {
+        int matchNumberCount = winningLotto.matchCountOtherLottoNumber(userLotto);
+        boolean matchBonus = userLotto.contains(bonusNumber);
+
+        return Rank.of(matchNumberCount, matchBonus);
+    }
 }
