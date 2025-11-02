@@ -19,6 +19,11 @@ public class InputParser {
                 .toList();
     }
 
+    public int parseBonusNumber(String inputBonusNumber) {
+        validateEmpty(inputBonusNumber, ErrorMessage.BONUS_NUMBER_BLANK);
+        return validateInteger(inputBonusNumber, ErrorMessage.BONUS_NUMBER_NOT_INTEGER);
+    }
+
     private void validateSeparator(String input, ErrorMessage error) {
         if (input.endsWith(",")) {
             throw new IllegalArgumentException(error.getMessage());
