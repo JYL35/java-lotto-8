@@ -8,6 +8,7 @@ public enum ErrorMessage {
     WINNING_NOT_INTEGER("[ERROR] 당첨 번호는 정수여야 합니다."),
     BONUS_NUMBER_BLANK("[ERROR] 보너스 번호는 비어있을 수 없습니다."),
     BONUS_NUMBER_NOT_INTEGER("[ERROR] 보너스 번호는 정수여야 합니다."),
+    BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     TRY_AGAIN("다시 입력해주세요.");
 
     private final String message;
