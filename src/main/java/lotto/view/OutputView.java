@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.domain.GameResult;
 import lotto.domain.Rank;
+import lotto.util.ErrorMessage;
 
 public class OutputView {
     private static final String PRINT_PURCHASE_COUNT = "%d개를 구매했습니다.";
@@ -11,7 +12,11 @@ public class OutputView {
     private static final String PRINT_STATISTICS_LINE = "%s (%,d원) - %d개";
     private static final String PRINT_PROFIT_RATE = "총 수익률은 %,.1f%%입니다.";
 
-    public void printPurchaseCount (int count) {
+    public void printError(String errorMessage) {
+        System.out.println(errorMessage + ErrorMessage.TRY_AGAIN);
+    }
+
+    public void printPurchaseCount(int count) {
         System.out.println(String.format(PRINT_PURCHASE_COUNT, count));
     }
 
