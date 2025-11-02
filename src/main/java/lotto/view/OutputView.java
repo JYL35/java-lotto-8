@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.GameResult;
 import lotto.domain.Rank;
@@ -30,14 +33,17 @@ public class OutputView {
     }
 
     public void printStatistics(GameResult gameResult) {
-        for (Rank rank : Rank.values()) {
-            System.out.println(String.format(
-                    PRINT_STATISTICS_LINE,
-                    rank.getDescription(),
-                    rank.getPrize(),
-                    gameResult.getCount(rank)
-            ));
-        }
+        List<Rank> reversedRanks = new ArrayList<>(Arrays.asList(Rank.values()));
+        reversedRanks.remove(Rank.MISS);
+        Collections.reverse(reversedRanks);
+
+        reversedRanks.forEach(rank -> System.out.println(String.format(
+                        PRINT_STATISTICS_LINE,
+                        rank.getDescription(),
+                        rank.getPrize(),
+                        gameResult.getCount(rank)
+                ))
+        );
     }
 
     public void printProfitRate(double profitRate) {
