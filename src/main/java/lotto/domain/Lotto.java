@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,8 +39,14 @@ public class Lotto {
     }
 
     public boolean contains(LottoNumber lottoNumber) {
-        return this.numbers
+        return numbers
                 .contains(lottoNumber);
+    }
+
+    public int matchCountOtherLottoNumber(Lotto otherLotto) {
+        return (int) numbers.stream()
+                .filter(otherLotto::contains)
+                .count();
     }
 
     @Override
