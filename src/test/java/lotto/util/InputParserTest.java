@@ -82,4 +82,24 @@ public class InputParserTest {
                 .hasMessageStartingWith("[ERROR]")
                 .hasMessageContaining("당첨 번호는 정수여야");
     }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호가 공백이거나 널값이면 예외가 발생한다.")
+    @NullAndEmptySource
+    void parseBonusNumber_IsBlank_ThrowException(String input) {
+        assertThatThrownBy(() -> inputParser.parseBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("보너스 번호는 비어있을 수 없습니다");
+    }
+
+    @ParameterizedTest
+    @DisplayName("보너스 번호가 정수가 아니면 예외가 발생한다.")
+    @ValueSource(strings = {"a", "abc", "1000.5"})
+    void parseBonusNumber_IsNotInteger_ThrowException(String input) {
+        assertThatThrownBy(() -> inputParser.parseBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("보너스 번호는 정수여야");
+    }
 }
