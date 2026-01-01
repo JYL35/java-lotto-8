@@ -17,8 +17,8 @@ public class PurchaseCount {
     }
 
     private void validate() {
-        validateUnit();
         validateRange();
+        validateUnit();
     }
 
     private void validateUnit() {
