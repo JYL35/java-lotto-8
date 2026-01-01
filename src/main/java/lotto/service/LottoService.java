@@ -1,11 +1,13 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseCount;
 import lotto.domain.PurchaseLotto;
+import lotto.domain.WinningLotto;
 
 public class LottoService {
     private static final int MAXIMUM_RANGE = 45;
@@ -20,6 +22,13 @@ public class LottoService {
         return new PurchaseLotto(Stream.generate(this::createStrategy)
                 .limit(purchaseCount.getPurchaseCount())
                 .toList());
+    }
+
+    public WinningLotto createWinningLotto(List<Integer> numbers, int bonusNumber) {
+        List<LottoNumber> winningNumber = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+        return new WinningLotto(winningNumber, new LottoNumber(bonusNumber));
     }
 
     private Lotto createStrategy() {
