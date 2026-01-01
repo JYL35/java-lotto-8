@@ -8,7 +8,8 @@ public enum ErrorMessage {
     LOTTO_NUMBER_COUNT_OVER("로또 번호는 6개여야 합니다."),
     DUPLICATE_LOTTO_NUMBERS("로또 번호가 중복됩니다."),
     IS_EMPTY("빈 값입니다."),
-    IS_NOT_NUMBER("숫자가 아닙니다.");
+    IS_NOT_NUMBER("숫자가 아닙니다."),
+    DUPLICATE_BONUS_NUMBER("보너스 번호가 당첨 번호와 중복됩니다.");
 
     private static final String PREFIX = "[ERROR] ";
     private static final String TRY_AGAIN = " 다시 입력해주세요.";
