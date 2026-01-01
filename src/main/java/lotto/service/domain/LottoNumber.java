@@ -1,8 +1,9 @@
 package lotto.service.domain;
 
+import java.util.Objects;
 import lotto.constant.ErrorMessage;
 
-public class LottoNumber {
+public class LottoNumber implements Comparable<LottoNumber> {
     private static final int MAXIMUM_RANGE = 45;
     private static final int MINIMUM_RANGE = 1;
 
@@ -25,5 +26,28 @@ public class LottoNumber {
 
     public int getLottoNumber() {
         return lottoNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof LottoNumber that)) {
+            return false;
+        }
+        return lottoNumber == that.lottoNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(lottoNumber);
+    }
+
+    @Override
+    public int compareTo(LottoNumber o) {
+        return Integer.compare(lottoNumber, o.lottoNumber);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(this.lottoNumber);
     }
 }
