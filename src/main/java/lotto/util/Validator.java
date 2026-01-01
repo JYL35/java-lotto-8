@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.constant.ErrorMessage;
 
 public class Validator {
@@ -7,6 +9,12 @@ public class Validator {
     public static int validatePurchaseAmount(String input) {
         validateEmpty(input);
         return validateNumber(input);
+    }
+
+    public static List<Integer> validateWinningLotto(String input) {
+        return Arrays.stream(input.split(","))
+                .map(Validator::validateNumber)
+                .toList();
     }
 
     private static void validateEmpty(String input) {
@@ -17,7 +25,7 @@ public class Validator {
 
     private static int validateNumber(String input) {
         try {
-            return Integer.parseInt(input);
+            return Integer.parseInt(input.strip());
         } catch (RuntimeException e) {
             throw new IllegalArgumentException(ErrorMessage.IS_NOT_NUMBER.getMessage());
         }
