@@ -24,10 +24,7 @@ public class LottoService {
                 .toList());
     }
 
-    public WinningLotto createWinningLotto(List<Integer> numbers, int bonusNumber) {
-        List<LottoNumber> winningNumber = numbers.stream()
-                .map(LottoNumber::new)
-                .toList();
+    public WinningLotto createWinningLotto(Lotto winningNumber, int bonusNumber) {
         return new WinningLotto(winningNumber, new LottoNumber(bonusNumber));
     }
 

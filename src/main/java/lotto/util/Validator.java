@@ -17,6 +17,11 @@ public class Validator {
                 .toList();
     }
 
+    public static int validateBounusNumber(String input) {
+        validateEmpty(input);
+        return validateNumber(input);
+    }
+
     private static void validateEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getMessage());
