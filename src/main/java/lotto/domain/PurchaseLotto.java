@@ -14,4 +14,10 @@ public class PurchaseLotto {
     public int getLottoSize() {
         return purchaseLotto.size();
     }
+
+    public List<String> getFormattedLottos() {
+        return purchaseLotto.stream()
+                .map(Lotto::toString)
+                .toList();
+    }
 }
