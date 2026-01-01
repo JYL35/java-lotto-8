@@ -1,4 +1,4 @@
-package lotto.service.domain;
+package lotto.domain;
 
 import lotto.constant.ErrorMessage;
 
