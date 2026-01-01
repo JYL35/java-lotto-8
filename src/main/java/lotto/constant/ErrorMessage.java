@@ -3,7 +3,7 @@ package lotto.constant;
 public enum ErrorMessage {
 
     WRONG_UNITS("1,000원 단위가 아닙니다."),
-    OVER_MAXIMUM_AMOUNT("최대 금액인 100,000원을 넘겼습니다."),
+    AMOUNT_OUT_OF_RANGE("금액이 1000~100000이 아닙니다."),
     NUMBER_OUT_OF_RANGE("번호가 1~45가 아닙니다."),
     LOTTO_NUMBER_COUNT_OVER("로또 번호는 6개여야 합니다."),
     DUPLICATE_LOTTO_NUMBERS("로또 번호가 중복됩니다."),

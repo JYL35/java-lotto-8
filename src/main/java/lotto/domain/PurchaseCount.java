@@ -18,7 +18,7 @@ public class PurchaseCount {
 
     private void validate() {
         validateUnit();
-        validateMaximum();
+        validateRange();
     }
 
     private void validateUnit() {
@@ -27,9 +27,9 @@ public class PurchaseCount {
         }
     }
 
-    private void validateMaximum() {
-        if (purchaseAmount > MAXIMUM_AMOUNT) {
-            throw new IllegalArgumentException(ErrorMessage.OVER_MAXIMUM_AMOUNT.getMessage());
+    private void validateRange() {
+        if (purchaseAmount < PURCHASE_UNIT || purchaseAmount > MAXIMUM_AMOUNT) {
+            throw new IllegalArgumentException(ErrorMessage.AMOUNT_OUT_OF_RANGE.getMessage());
         }
     }
 
