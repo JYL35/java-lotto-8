@@ -24,7 +24,7 @@ public class LottoService {
 
     private Lotto createStrategy() {
         return new Lotto(Randoms
-                .pickUniqueNumbersInRange(MAXIMUM_RANGE, MINIMUM_RANGE, LOTTO_COUNT)
+                .pickUniqueNumbersInRange(MINIMUM_RANGE, MAXIMUM_RANGE, LOTTO_COUNT)
                 .stream()
                 .map(LottoNumber::new)
                 .toList());
