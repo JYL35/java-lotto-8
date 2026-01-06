@@ -9,6 +9,7 @@ import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
+import lotto.dto.GameResult;
 
 public class LottoService {
 
@@ -25,7 +26,8 @@ public class LottoService {
         return new WinningLotto(new Lotto(winningNumber), bonusNumber);
     }
 
-    public Map<Rank, Integer> calculateWinningStatistics(List<Lotto> lottoTickets, WinningLotto winningLotto) {
+    public GameResult calculateWinningStatistics(List<Lotto> lottoTickets,
+                                                 WinningLotto winningLotto, int purchaseAmount) {
         Map<Rank, Integer> winningStatistics = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottoTickets) {
             int matchCount = winningLotto.calculateMatchCount(lotto);
@@ -33,7 +35,17 @@ public class LottoService {
             Rank rank = Rank.findRank(matchCount, matchBonus);
             winningStatistics.put(rank, winningStatistics.getOrDefault(rank, 0) + 1);
         }
-        return winningStatistics;
+        double profitRate = calculateProfitRate(winningStatistics, purchaseAmount);
+        return new GameResult(winningStatistics, profitRate);
+    }
+
+    private double calculateProfitRate(Map<Rank, Integer> winningStatistics, int purchaseAmount) {
+        long totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            long prize = rank.getPrize() * winningStatistics.getOrDefault(rank, 0);
+            totalPrize += prize;
+        }
+        return (double) totalPrize / purchaseAmount;
     }
 
     private int calculatePurchaseCount(int purchaseAmount) {
