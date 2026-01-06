@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.util.Parser;
 import lotto.view.InputView;
@@ -26,6 +27,7 @@ public class LottoController {
             outputView.printLottoTickets(lottoTickets);
             List<Integer> winningNumbers = readWinningNumbers();
             int bonusNumber = readBonusNumber(winningNumbers);
+            WinningLotto winningLotto = lottoService.createWinningLotto(winningNumbers, bonusNumber);
         } catch (RuntimeException e) {
             outputView.printError(e);
         }

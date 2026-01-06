@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 public class LottoService {
 
@@ -14,6 +15,10 @@ public class LottoService {
             lottoTickets.add(new Lotto(createLottoNumber()));
         }
         return lottoTickets;
+    }
+
+    public WinningLotto createWinningLotto(List<Integer> winningNumber, int bonusNumber) {
+        return new WinningLotto(new Lotto(winningNumber), bonusNumber);
     }
 
     private int calculatePurchaseCount(int purchaseAmount) {
