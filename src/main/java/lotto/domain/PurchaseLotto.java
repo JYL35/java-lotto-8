@@ -20,4 +20,8 @@ public class PurchaseLotto {
                 .map(Lotto::toString)
                 .toList();
     }
+
+    public List<Lotto> getPurchaseLotto() {
+        return new ArrayList<>(purchaseLotto);
+    }
 }

@@ -7,6 +7,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseCount;
 import lotto.domain.PurchaseLotto;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
@@ -24,8 +25,24 @@ public class LottoService {
                 .toList());
     }
 
-    public WinningLotto createWinningLotto(Lotto winningNumber, int bonusNumber) {
-        return new WinningLotto(winningNumber, new LottoNumber(bonusNumber));
+
+    public Lotto createWinningNumber(List<Integer> winningNumber) {
+        return new Lotto(winningNumber
+                .stream()
+                .map(LottoNumber::new)
+                .toList());
+    }
+
+    public void calculateResult(PurchaseLotto purchaseLotto,
+                                     Lotto winningNumber, LottoNumber bonusNumber) {
+        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+
+        List<Rank> matchResult = purchaseLotto.getPurchaseLotto()
+                .stream()
+                .map(winningLotto::findRank)
+                .toList();
+
+
     }
 
     private Lotto createStrategy() {

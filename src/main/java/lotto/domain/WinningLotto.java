@@ -13,6 +13,13 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public Rank findRank(Lotto lotto) {
+        int matchCount = lotto.matchCountOtherLotto(winningNumber);
+        boolean matchBonus = lotto.contains(bonusNumber);
+
+        return Rank.matchRank(matchCount, matchBonus);
+    }
+
     private void validateDuplication(Lotto winningNumber, LottoNumber bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getMessage());

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.PurchaseLotto;
 import lotto.service.LottoService;
 import lotto.util.Validator;
@@ -27,10 +28,14 @@ public class LottoController {
             return lottoService.createLottos(purchaseAmount);
         });
 
-        List<Integer> winningLotto = Validator.validateWinningLotto(inputView.readWinningNumbers());
-
         outputView.printPurchaseCount(purchaseLotto.getLottoSize());
         outputView.printPurchaseLotto(purchaseLotto.getFormattedLottos());
+
+        Lotto winningNumber = retryUntilSuccess(() -> {
+            List<Integer> nums = Validator.validateWinningNumber(inputView.readWinningNumbers());
+            return lottoService.createWinningNumber(nums);
+        });
+
     }
 
     private <T> T retryUntilSuccess(java.util.function.Supplier<T> action) {

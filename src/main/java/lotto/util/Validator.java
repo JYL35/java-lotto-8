@@ -11,7 +11,7 @@ public class Validator {
         return validateNumber(input);
     }
 
-    public static List<Integer> validateWinningLotto(String input) {
+    public static List<Integer> validateWinningNumber(String input) {
         return Arrays.stream(input.split(","))
                 .map(Validator::validateNumber)
                 .toList();
