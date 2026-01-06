@@ -28,7 +28,7 @@ public enum Rank {
                 return rank;
             }
         }
-        throw new IllegalArgumentException("해당하는 순위가 없습니다.");
+        return MISS;
     }
 
     public int getMatchCount() {
