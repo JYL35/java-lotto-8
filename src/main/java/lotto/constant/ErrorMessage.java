@@ -10,6 +10,12 @@ public enum ErrorMessage {
     LOTTO_NUMBER_IS_DUPLICATED("로또 번호가 중복됩니다."),
     LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1~45이어야 합니다."),
 
+    WINNING_NUMBER_IS_EMPTY("당첨 번호는 비어있습니다."),
+    WINNING_NUMBER_IS_NOT_NUMBER("당첨 번호가 숫자가 아닙니다."),
+    WINNING_NUMBER_OUT_OF_RANGE("당첨 번호는 1~45이어야 합니다."),
+    WINNING_NUMBER_IS_DUPLICATED("당첨 번호가 중복됩니다."),
+    WINNING_NUMBER_IS_INCORRECT("당첨 번호 개수는 6개어야 합니다."),
+
 
     INVALID_FORMAT("잘못된 형식을 입력하였습니다."),
     NOT_FOUND_NICKNAME("등록되지 않은 닉네임입니다.");
