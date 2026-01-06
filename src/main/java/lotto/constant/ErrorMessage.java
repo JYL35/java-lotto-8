@@ -16,6 +16,11 @@ public enum ErrorMessage {
     WINNING_NUMBER_IS_DUPLICATED("당첨 번호가 중복됩니다."),
     WINNING_NUMBER_IS_INCORRECT("당첨 번호 개수는 6개어야 합니다."),
 
+    BONUS_NUMBER_IS_EMPTY("보너스 번호는 비어있습니다."),
+    BONUS_NUMBER_IS_NOT_NUMBER("보너스 번호가 숫자가 아닙니다."),
+    BONUS_NUMBER_OUT_OF_RANGE("보너스 번호는 1~45이어야 합니다."),
+    BONUS_NUMBER_IS_DUPLICATED("보너스 번호가 당첨 번호와 중복됩니다."),
+
 
     INVALID_FORMAT("잘못된 형식을 입력하였습니다."),
     NOT_FOUND_NICKNAME("등록되지 않은 닉네임입니다.");

@@ -28,6 +28,20 @@ public class Validator {
         return winningNumbers;
     }
 
+    public static int validateBonusNumber(String input, List<Integer> winningNumbers) {
+        validateEmpty(input, ErrorMessage.BONUS_NUMBER_IS_EMPTY);
+        int bonusNumber = validateNumber(input, ErrorMessage.BONUS_NUMBER_IS_NOT_NUMBER);
+        validateRange(1, 45, bonusNumber, ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE);
+        validateBonusNumberDuplicate(winningNumbers, bonusNumber);
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumberDuplicate(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IS_DUPLICATED.getMessage());
+        }
+    }
+
     private static void validateDuplicate(List<Integer> numbers) {
         List<Integer> comparison = numbers.stream()
                 .distinct()

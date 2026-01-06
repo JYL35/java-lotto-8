@@ -25,8 +25,20 @@ public class LottoController {
             List<Lotto> lottoTickets = lottoService.createLotto(purchaseAmount);
             outputView.printLottoTickets(lottoTickets);
             List<Integer> winningNumbers = readWinningNumbers();
+            int bonusNumber = readBonusNumber(winningNumbers);
         } catch (RuntimeException e) {
             outputView.printError(e);
+        }
+    }
+
+    private int readBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                String inputBonusNumber = inputView.inputBonusNumber();
+                return Parser.parseBonusNumber(inputBonusNumber, winningNumbers);
+            } catch (RuntimeException e) {
+                outputView.printError(e);
+            }
         }
     }
 

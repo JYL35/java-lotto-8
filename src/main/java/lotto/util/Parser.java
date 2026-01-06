@@ -14,4 +14,8 @@ public class Parser {
                 .map(String::strip)
                 .toList());
     }
+
+    public static int parseBonusNumber(String input, List<Integer> winningNumbers) {
+        return Validator.validateBonusNumber(input, winningNumbers);
+    }
 }
