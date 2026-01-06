@@ -8,6 +8,7 @@ import lotto.dto.GameResult;
 public class OutputView {
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
+        printNewLine();
         System.out.println(lottoTickets.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoTickets) {
             String lottoNumbers = String.join(", ", lotto.getNumbers()
@@ -30,7 +31,7 @@ public class OutputView {
         printNewLine();
         System.out.printf("6개 일치 (2,000,000,000원) - %d개", gameResult.result().getOrDefault(Rank.FIRST, 0));
         printNewLine();
-        System.out.printf("%.2f", gameResult.profitRate());
+        System.out.println("총 수익률은 " + String.format("%.2f", gameResult.profitRate()) + "%입니다.");
     }
 
     public void printError(RuntimeException e) {
