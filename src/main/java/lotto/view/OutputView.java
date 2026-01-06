@@ -31,7 +31,7 @@ public class OutputView {
         printNewLine();
         System.out.printf("6개 일치 (2,000,000,000원) - %d개", gameResult.result().getOrDefault(Rank.FIRST, 0));
         printNewLine();
-        System.out.println("총 수익률은 " + String.format("%.2f", gameResult.profitRate()) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", gameResult.profitRate()) + "%입니다.");
     }
 
     public void printError(RuntimeException e) {

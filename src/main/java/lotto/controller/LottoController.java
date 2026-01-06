@@ -31,7 +31,7 @@ public class LottoController {
             WinningLotto winningLotto = lottoService.createWinningLotto(winningNumbers, bonusNumber);
             GameResult gameResult = lottoService.calculateWinningStatistics(lottoTickets, winningLotto, purchaseAmount);
             outputView.printResult(gameResult);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             outputView.printError(e);
         }
     }
@@ -41,7 +41,7 @@ public class LottoController {
             try {
                 String inputBonusNumber = inputView.inputBonusNumber();
                 return Parser.parseBonusNumber(inputBonusNumber, winningNumbers);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
         }
@@ -52,7 +52,7 @@ public class LottoController {
             try {
                 String inputWinningNumbers = inputView.inputWinningNumbers();
                 return Parser.parseWinningNumbers(inputWinningNumbers);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
         }
@@ -63,7 +63,7 @@ public class LottoController {
             try {
                 String inputPurchaseAmount = inputView.inputPurchaseAmount();
                 return Parser.parsePurchaseAmount(inputPurchaseAmount);
-            } catch (RuntimeException e) {
+            } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }
         }

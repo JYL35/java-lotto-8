@@ -3,9 +3,9 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
@@ -45,7 +45,7 @@ public class LottoService {
             long prize = rank.getPrize() * winningStatistics.getOrDefault(rank, 0);
             totalPrize += prize;
         }
-        return (double) totalPrize / purchaseAmount;
+        return (double) totalPrize / purchaseAmount * 100;
     }
 
     private int calculatePurchaseCount(int purchaseAmount) {
